@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<vector<int>> map;
+vector< vector<int> > map;
 vector<bool> visit;
 int cnt = 0;
 
@@ -16,7 +16,6 @@ void dfs(int x) {
 	for(int j = 0; j < map[x].size(); j++) {
 		if(!visit[map[x][j]]) dfs(map[x][j]);
 	}
-	return;
 }
 
 
