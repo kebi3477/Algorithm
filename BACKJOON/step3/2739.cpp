@@ -3,12 +3,12 @@ using namespace std;
 
 int main(void) {	
 	
-	int sum = 0, n = 0;
+	int n;
 	scanf("%d", &n);
-	for(int i = 1; i <= n; i++) {
-		sum += i;
+
+	for(int i = 1; i < 10; i++) {
+		printf("%d * %d = %d\n", n, i, n*i);
 	}
-	printf("%d", sum);
 	
 	return 0;
 }
