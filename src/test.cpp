@@ -3,10 +3,10 @@ using namespace std;
 
 int main(void) {	
 	
-	int sum = 0, n = 0;
-	scanf("%d", &n);
-	for(int i = 1; i <= n; i++) {
-		sum += i;
+	int t;
+	scanf("%d", &t);
+	for(int i = 0; i < t; i++) {
+		
 	}
 	printf("%d", sum);
 	
