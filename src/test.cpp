@@ -3,23 +3,33 @@ using namespace std;
 
 int main(void) {
 	
-	int n, num = 0, cnt = 0;
-	scanf("%d", &n);
+	int m, n, sum=0, min=0;
+	bool flags, minFlags = false;
+	scanf("%d %d", &m, &n);
 	
-	for(int i = 0; i < n; i++) {
-		scanf("%d", &num);
-		if(num == 1) {
-			cnt++;
-			continue;
-		}
-		for(int j = 2; j < num; j++) {
-			if(num % j == 0) {
-				cnt++;
+	for(int i = m; i < n+1; i++) {
+		flags=false;
+		if(i == 1) continue;
+		
+		for(int j = 2; j < i; j++) {
+			if(i % j == 0) {
+				flags = true;
 				break;
 			}
 		}	
+		if(!flags) {
+			sum += i;
+			if(!minFlags) {
+				min = i;
+				minFlags = true;
+			}
+		}
 	}
-	printf("%d\n", n-cnt);
+	if(minFlags) {
+		printf("%d\n%d", sum, min);	
+	} else {
+		printf("-1");
+	}
 	
 	return 0;
 }
