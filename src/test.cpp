@@ -1,22 +1,19 @@
 #include <stdio.h>
 using namespace std;
-
-int compare(int a, int b, int c) {
-	if(a == b) return c;
-	else if(a == c) return b;
-	else return a;
-}
-
 int main(void) {
-	
-	int x[3], y[3], xResult, yResult;
-	for(int i = 0; i < 3; i++) {
-		scanf("%d %d", &x[i], &y[i]);
+	while(1) {
+		int a, b, c;
+		scanf("%d %d %d", &a, &b, &c);
+		if(a==0 && b==0 && c==0) break;
+		if(a*a + b*b == c*c) {
+			printf("right\n");
+		} else if(b*b + c*c == a*a) {
+			printf("right\n");
+		} else if(c*c + a*a == b*b) {
+			printf("right\n");
+		} else {
+			printf("wrong\n");
+		} 
 	}
-	xResult = compare(x[0],x[1],x[2]);
-	yResult = compare(y[0],y[1],y[2]);
-	
-	printf("%d %d", xResult, yResult);
-	
 	return 0;
 }
