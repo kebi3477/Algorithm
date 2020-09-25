@@ -1,59 +1,32 @@
 #include <stdio.h>
+#include <vector>
 #include <algorithm>
+#include <utility>
 using namespace std;
-void swap(int *arr, int *arr2, int a, int b) {
-	int tmp = 0 ;
-	tmp = arr[a];
-	arr[a] = arr[b];
-	arr[b] = tmp;
-	
-	tmp = arr2[a];
-	arr2[a] = arr2[b];
-	arr2[b] = tmp;
-}
 
-void quickSort(int* x, int* y, int start, int end) {
-	int pivot = x[start];
-	int left = start+1;
-	int right = end;
-	int same = start+1;
-	
-	while(left < right) {
-		while(x[left] < pivot) {
-			left++;
-		}
-		while(x[right] > pivot) { 
-			right--; 
-		}
-		
-		
-		if(left <= right) {
-			swap(x, y, left, right);
-		}
+bool compare(pair<int, int> a, pair<int, int> b) {
+	if(a.first == b.first) {
+		return a.second < b.second;
+	} else {
+		return a.first < b.first;
 	}
-	if(start < end) {
-		swap(x, y, start, right);
-		
-		quickSort(x, y, start, right-1);
-		quickSort(x, y, right+1, end);
-	}
-	
-	return;
 }
 
 int main(void) {
 	int n;
 	scanf("%d", &n);
-	int x[n], y[n], sortX[n], sortY[n];
+	vector< pair<int, int> > v;
 	
 	for(int i = 0; i < n; i++) {
-		scanf("%d %d", &x[i], &y[i]);
+		int x, y;
+		scanf("%d %d", &x, &y);
+		v.push_back(make_pair(x, y));
 	}
 	
-	quickSort(x, y, 0, n);
+	sort(v.begin(), v.end(), compare);
 	
 	for(int i = 0; i < n; i++) {
-		printf("%d %d\n", x[i], y[i]);
+		printf("%d %d\n", v[i].first, v[i].second);
 	}
 	
 	return 0;

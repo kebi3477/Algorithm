@@ -1,33 +1,32 @@
 #include <stdio.h>
-#include <iostream>
-#include <string>
+#include <vector>
 #include <algorithm>
+#include <utility>
 using namespace std;
 
-bool compare(string a, string b) {
-	if(a.size() == b.size()) {
-		return a < b;
+bool compare(pair<int, int> a, pair<int, int> b) {
+	if(a.first == b.first) {
+		return a.second < b.second;
 	} else {
-		return a.size() < b.size();
+		return a.first < b.first;
 	}
 }
 
 int main(void) {
 	int n;
 	scanf("%d", &n);
-	string str[n], tmp;
+	vector< pair<int, int> > v;
 	
 	for(int i = 0; i < n; i++) {
-		cin >> str[i];	
+		int x, y;
+		scanf("%d %d", &x, &y);
+		v.push_back(make_pair(x, y));
 	}
 	
-	sort(str, str+n, compare);
+	sort(v.begin(), v.end(), compare);
 	
-	for(int i = 0; i < n; i++) { 
-		if(str[i] == str[i+1]) {
-			continue;
-		}
-		cout << str[i] + "\n";
+	for(int i = 0; i < n; i++) {
+		printf("%d %d\n", v[i].first, v[i].second);
 	}
 	
 	return 0;
