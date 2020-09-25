@@ -1,29 +1,33 @@
 #include <stdio.h>
-//using namespace std;
-int main(void) {	
-	int n, digit[10], count[10];
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+bool compare(string a, string b) {
+	if(a.size() == b.size()) {
+		return a < b;
+	} else {
+		return a.size() < b.size();
+	}
+}
+
+int main(void) {
+	int n;
 	scanf("%d", &n);
-	if(n == 0) {
-		printf("0");
-		return 0;
-	}
-	for(int i = 0; i < 10; i++) {
-		digit[i] = 0;
-		count[i] = 0;
-	}
-	int j = 0;
-	while(n > 0) {
-		digit[j] = n % 10;
-		count[digit[j]]++;
-		n /= 10;
-		j++;
+	string str[n], tmp;
+	
+	for(int i = 0; i < n; i++) {
+		cin >> str[i];	
 	}
 	
-	for(int i = 9; i >= 0; i--) {
-		if(count[i] != 0) {
-			for(j = 0; j < count[i]; j++) 
-				printf("%d", i);	
+	sort(str, str+n, compare);
+	
+	for(int i = 0; i < n; i++) { 
+		if(str[i] == str[i+1]) {
+			continue;
 		}
+		cout << str[i] + "\n";
 	}
 	
 	return 0;
