@@ -6,22 +6,37 @@ int max(int a, int b) {
 }
 
 int main(void) {
-	int n;
-	scanf("%d", &n);
-	int sum, maxV, arr[n+1], dp[n+1];
-	for(int i = 1; i <= n; i++) scanf("%d", &arr[i]);
-	
-	dp[0] = 0;
+	int n, k;
+	scanf("%d %d", &n, &k);
+	int w[n+1], v[n+1], dp[n+1][k+1];
 	for(int i = 1; i <= n; i++) {
-		dp[i] = max(dp[i-1] + arr[i], arr[i]);
+		scanf("%d %d", &w[i], &v[i]);
+	}
+	for(int i = 0; i <= n; i++) {
+		for(int j = 0; j <= k; j++) {
+			dp[i][j] = 0;
+		}
 	}
 	
-	maxV = dp[1];
 	for(int i = 1; i <= n; i++) {
-		if(maxV < dp[i]) maxV = dp[i];
+		dp[0][i] = 0;
+		for(int j = 1; j <= k; j++) {
+			dp[j][0] = 0;
+			if(j >= w[i]) {
+				dp[i][j] = max(dp[i-1][j], dp[i-1][j-w[i]]+v[i]);
+			} else {
+				dp[i][j] = dp[i][j-1];
+			}
+		}	
 	}
 	
-	printf("%d", maxV);
+	// for(int i = 1; i <= n; i++) {
+	// 	for(int j = 1; j <= k; j++) {
+	// 		printf("%d ", dp[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
+	printf("%d", dp[n][k]);
 	
 	return 0;
 }
